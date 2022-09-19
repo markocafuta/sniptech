@@ -80,7 +80,7 @@ class MapperImplTest {
 	}
 
 	private void mockProcessor () {
-		when(processor.process(any())).thenReturn(new TestCaseResult(1, 5));
+		when(processor.process(any())).thenReturn(new TestCaseResult(1));
 	}
 
 	private TestCase captureTestCase (final int times) {

@@ -3,7 +3,6 @@ package com.snaptech.legoland;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Collection;
-
 @RequiredArgsConstructor
 public class WoodcutterProfitCalculator implements ProfitCalculator {
 

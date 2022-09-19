@@ -1,6 +1,7 @@
 package com.snaptech.legoland;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class TreeTrunkSawmill implements Sawmill {
@@ -9,34 +10,21 @@ public class TreeTrunkSawmill implements Sawmill {
 	public List<Integer> cut (final int[] treeTrunks) {
 		List<Integer> cutted = new ArrayList<>();
 		int remainder = 0;
-		for (int i = 0; i < treeTrunks.length; i++)
-			remainder = cut(treeTrunks[i], remainder, cutted);
+		for (final int treeTrunk : treeTrunks)
+			remainder = cut(treeTrunk, remainder, cutted);
 
 		return cutted;
 	}
 
-	private int cut(final int treeTrunk, final int remainder, final List<Integer> cutted) {
-		if (isLong(treeTrunk))
-			return cutLong(treeTrunk, remainder, cutted);
-		else
-			return cutShort(treeTrunk, remainder, cutted);
-	}
-
-	private boolean isLong (final int treeTrunk) {
-		return treeTrunk > 3;
-	}
-
-	private int cutShort (final int treeTrunk, final int remainder, final List<Integer> cutted) {
-		cutted.add(treeTrunk);
-		return  (treeTrunk + remainder) % 3;
-	}
-
-	private int cutLong (final int treeTrunk, final int remainder, final List<Integer> cutted) {
+	private static int cut (final int treeTrunk, final int remainder, final Collection<Integer> cutted) {
 		int blocks = treeTrunk;
-		if (remainder > 0) {
-			int firstBlock = 3 - remainder;
-			cutted.add(firstBlock);
-			blocks = treeTrunk - firstBlock;
+		int newReminder = remainder;
+
+		if (newReminder > 0 && blocks + newReminder > 3) {
+			int firstCut = 3 - remainder;
+			cutted.add(firstCut);
+			blocks = treeTrunk - firstCut;
+			newReminder = 0;
 		}
 
 		int ratio = blocks / 3;
@@ -48,6 +36,6 @@ public class TreeTrunkSawmill implements Sawmill {
 		if (modulo > 0)
 			cutted.add(modulo);
 
-		return modulo;
+		return (modulo + newReminder) % 3;
 	}
 }

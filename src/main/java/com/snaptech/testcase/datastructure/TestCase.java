@@ -10,7 +10,7 @@ public class TestCase {
 	private final int ordinal;
 
 	@Getter
-	private int[][] treeTrunks;
+	private final int[][] treeTrunks;
 
 	public TestCase(final int ordinal, final int sawmillCount) {
 		this.ordinal = ordinal;

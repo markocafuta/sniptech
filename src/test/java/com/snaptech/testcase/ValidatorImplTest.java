@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ValidatorImplTest {
 
-	ValidatorImpl validator = new ValidatorImpl();
+	Validator validator = new ValidatorImpl();
 
 	@Test
 	void notValid_whenSawmillTreeTrunksNotInitilized (){

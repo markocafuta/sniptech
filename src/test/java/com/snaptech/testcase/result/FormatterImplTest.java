@@ -13,7 +13,7 @@ class FormatterImplTest {
 
 	@Test
 	void format () {
-		TestCaseResult tcResult = new TestCaseResult(1, 5);
+		TestCaseResult tcResult = new TestCaseResult(1);
 		Map<Integer, Collection<String>> order = tcResult.getOrder();
 
 		Collection<String> order1 = new LinkedHashSet<>();
@@ -37,7 +37,7 @@ class FormatterImplTest {
 		order.put(2, order3);
 
 		String expected = "Case: 1" + System.lineSeparator() +
-			"Max profit: 5"  + System.lineSeparator() +
+			"Max profit: 0"  + System.lineSeparator() +
 			"Order: [1,2,3][3,2,1][2,1,3][2,3,1],[4,5,6][6,4,5][4,6,5][5,4,5],[7,8][8,7]" + System.lineSeparator();
 
 		Formatter formatter = new FormatterImpl();

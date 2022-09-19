@@ -1,5 +1,6 @@
 package com.snaptech;
 
+import com.snaptech.infrastructure.BeanFactory;
 import com.snaptech.input.Parser;
 import com.snaptech.input.Reader;
 import com.snaptech.testcase.Mapper;

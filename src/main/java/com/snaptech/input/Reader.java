@@ -1,13 +1,11 @@
 package com.snaptech.input;
 
-import com.snaptech.BeanFactory;
+import com.snaptech.infrastructure.BeanFactory;
 import com.snaptech.output.Printer;
 import com.snaptech.testcase.Mapper;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;
 
-@Slf4j
 public class Reader {
 
 	private static final String EXIT = "0";
@@ -29,7 +27,7 @@ public class Reader {
 		try (Scanner scanner = new Scanner(System.in)) {
 			read(scanner);
 		} catch (final Exception e) {
-			log.error("Error while reading from input!", e);
+			printError(e);
 		}
 	}
 
@@ -37,6 +35,8 @@ public class Reader {
 		String line = "";
 		while (notExit(line))
 			line = nextLine(scanner);
+
+		parse("1");
 	}
 
 	private static boolean notExit (final String inputLine) {
@@ -71,13 +71,18 @@ public class Reader {
 			println(iae.getMessage());
 			println(INVALID_INPUT);
 		} catch (final Exception e) {
-			log.error("Error while reading from input!", e);
+			printError(e);
 		}
 	}
 
 	private void parseAndMap (final String line) {
 			int[] tokens = parser.parse(line);
 			mapper.map(tokens);
+	}
+
+	private void printError (final Exception e) {
+		String errorMsg = "Error while reading from input! " + e.getMessage();
+		println(errorMsg);
 	}
 
 	private void println(final String msg) {
